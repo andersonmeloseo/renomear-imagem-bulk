@@ -1,0 +1,141 @@
+Explicação Didática do Script e Como Usar
+Esse script automatiza o processo de buscar imagens de uma página da web, renomeá-las com base em palavras-chave fornecidas e salvá-las no servidor via FTP ou SFTP. Além disso, ele gera um arquivo Excel (.xlsx) listando os nomes originais e renomeados.
+
+📜 Passo a Passo do Funcionamento do Script
+1️⃣ O Usuário Digita a URL
+O script solicita a URL de uma página da web que contém imagens.
+Ele faz um scraping do HTML dessa página para coletar todas as imagens encontradas.
+2️⃣ O Script Extrai as Imagens da Página
+Ele analisa o código-fonte HTML, buscando todas as tags <img>.
+Obtém os nomes dos arquivos das imagens, por exemplo:
+Copiar
+Editar
+imagem1.jpg
+foto2.png
+banner.png
+Remove duplicatas caso existam imagens repetidas.
+3️⃣ O Usuário Digita Palavras-Chave para Renomeação
+O script solicita uma lista de palavras-chave separadas por vírgula.
+Cada palavra será usada para renomear uma imagem, mantendo a mesma ordem.
+4️⃣ O Script Formata os Novos Nomes
+Remove acentos e caracteres especiais.
+Substitui espaços por hífens (-) para manter um formato SEO-friendly.
+Exemplo:
+arduino
+Copiar
+Editar
+Palavra-chave digitada: "Limpeza Profunda"
+Nome formatado: "limpeza-profunda"
+5️⃣ O Script Pergunta se Você Deseja Renomear os Arquivos no Servidor
+Ele exibe a correspondência entre os nomes antigos e novos.
+Pergunta se deseja continuar a renomeação ou cancelar.
+6️⃣ O Usuário Escolhe entre FTP ou SFTP
+FTP (File Transfer Protocol): Protocolo mais antigo, usado para transferir arquivos.
+SFTP (Secure FTP): Mais seguro, pois criptografa os dados.
+Dependendo da escolha, o script conecta-se ao servidor e renomeia os arquivos diretamente no servidor.
+7️⃣ O Script Gera um Arquivo Excel (.xlsx)
+Após a renomeação, o script cria um arquivo Excel listando os nomes originais e renomeados.
+Exemplo do arquivo gerado:
+Nome Original	Nome Renomeado
+imagem1.jpg	limpeza-profunda.jpg
+foto2.png	higienizacao-carpete.jpg
+banner.png	organizacao-casa.jpg
+O arquivo será salvo como renomeacao_imagens.xlsx no mesmo diretório do script.
+🛠 Como Usar o Script?
+1️⃣ Instale as Bibliotecas Necessárias
+Antes de rodar o script, instale as bibliotecas que ele usa (se ainda não tiver). No Mu Editor, clique no terminal (REPL) e digite:
+
+bash
+Copiar
+Editar
+pip install requests beautifulsoup4 paramiko pandas openpyxl
+Isso instala:
+
+requests → Para acessar a página da web e baixar o HTML.
+beautifulsoup4 → Para extrair as imagens do HTML.
+paramiko → Para se conectar via SFTP ao servidor.
+pandas → Para gerar o arquivo Excel.
+openpyxl → Para salvar o Excel no formato .xlsx.
+2️⃣ Abra o Mu Editor e Cole o Código
+Abra o Mu Editor e cole o código completo (veja na resposta anterior).
+Salve o arquivo como renomeador.py.
+3️⃣ Execute o Script
+No Mu Editor, clique em Run (Executar).
+O terminal pedirá a URL da página com as imagens.
+4️⃣ Digite a URL da Página
+Exemplo:
+less
+Copiar
+Editar
+🔗 Digite a URL da página com imagens: https://seusite.com/galeria
+5️⃣ O Script Listará as Imagens Encontradas
+Exemplo:
+
+markdown
+Copiar
+Editar
+📂 Imagens encontradas:
+ - imagem1.jpg
+ - foto2.png
+ - banner.png
+6️⃣ Digite as Palavras-Chave
+O script pedirá uma lista de palavras-chave separadas por vírgula, respeitando a quantidade de imagens.
+
+Exemplo:
+
+csharp
+Copiar
+Editar
+✍️ Digite as palavras-chave separadas por vírgula:
+Limpeza Profunda, Higienização Carpete, Organização Casa
+O script formatará os nomes automaticamente:
+
+Copiar
+Editar
+🔄 Nova nomeação:
+✅ imagem1.jpg → limpeza-profunda.jpg
+✅ foto2.png → higienizacao-carpete.jpg
+✅ banner.png → organizacao-casa.jpg
+7️⃣ Confirme se Quer Continuar
+bash
+Copiar
+Editar
+🔄 Deseja renomear os arquivos no servidor? (s/n): s
+Se digitar "s", ele seguirá com a renomeação.
+
+8️⃣ Escolha FTP ou SFTP
+scss
+Copiar
+Editar
+🌐 Escolha o método de conexão (FTP/SFTP): sftp
+Digite ftp para FTP
+Digite sftp para SFTP
+Se a conexão for bem-sucedida, o script renomeia os arquivos no servidor:
+
+Copiar
+Editar
+✅ imagem1.jpg → limpeza-profunda.jpg
+✅ foto2.png → higienizacao-carpete.jpg
+✅ banner.png → organizacao-casa.jpg
+9️⃣ Arquivo Excel Gerado
+No final, ele gera um arquivo Excel:
+
+arduino
+Copiar
+Editar
+📄 Arquivo Excel 'renomeacao_imagens.xlsx' gerado com sucesso!
+✅ Renomeação concluída!
+O arquivo renomeacao_imagens.xlsx ficará no mesmo diretório do script.
+
+🎯 Resumo
+O que esse script faz?
+✅ Coleta imagens de uma página da web
+✅ Permite que você digite palavras-chave para renomeá-las
+✅ Conecta-se ao servidor via FTP ou SFTP
+✅ Renomeia os arquivos diretamente no servidor
+✅ Gera um arquivo Excel com os nomes originais e renomeados
+
+💡 Dicas Extras
+🚀 Personalização: Você pode alterar o código para adicionar prefixos, datas, ou criar nomes aleatórios.
+📂 Outros Formatos: Se precisar de CSV, basta modificar to_excel() para to_csv().
+🔍 Teste com uma URL de exemplo antes de rodar em produção.
